@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using FMODUnity;
@@ -80,7 +79,7 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
         animator.SetFloat("Speed", Math.Abs(horizontal));
 
-        if (IsGrounded() && rb.velocity.y <= 0)
+        if (IsGrounded() && rb.velocity.y <= 0.01f)
         {
             _jumpsLeft = maxJump;
             animator.SetBool("isJumping", false);
