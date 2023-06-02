@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
     public Transform groundCheck;
+    [SerializeField] private BoxCollider2D groundCheckBox;
     public LayerMask groundLayer;
 
     public Animator animator;
@@ -54,6 +55,7 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        groundCheckBox.GetComponent<BoxCollider2D>();
         _jumpsLeft = maxJump;
     }
 
@@ -112,8 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        
-        return Physics2D.OverlapCircle(groundCheck.position, 0.05f, groundLayer);
+        return Physics2D.BoxCast(groundCheckBox.bounds.center, groundCheckBox.bounds.size, 0f,Vector2.down, .1f, groundLayer);
     }
 
     public void PlayFootstep()
