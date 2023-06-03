@@ -22,7 +22,8 @@ public class Checkpoint : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        
+        deathScript.Updatecheckpoint(respawnPoint.position);
+        _spriteRenderer.sprite = active;
         if (collider2D.transform.CompareTag("Player"))
         {
             if (playAudio.enabled)
@@ -34,8 +35,7 @@ public class Checkpoint : MonoBehaviour
             {
                 return;
             }
-            deathScript.Updatecheckpoint(respawnPoint.position);
-            _spriteRenderer.sprite = active;
+            
             
         }
         

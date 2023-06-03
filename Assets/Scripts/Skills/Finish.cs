@@ -12,7 +12,6 @@ public class Finish : MonoBehaviour
     [SerializeField] private GameObject icon;
     [SerializeField] private GameObject endScreen;
     [SerializeField] private GameObject toDoList;
-    [SerializeField] private float endScreenTime = 5f;
     private bool canTrigger = false;
     private PlayerInput _playerInput;
 
@@ -40,7 +39,6 @@ public class Finish : MonoBehaviour
     {
         if (context.performed && canTrigger == true)
         {
-            _animator.SetBool("isBrewingQ3", true);
             canTrigger = false;
             FinishScreen();
         }
@@ -48,15 +46,8 @@ public class Finish : MonoBehaviour
 
     private void FinishScreen()
     {
-        toDoList.SetActive(false);
-        endScreen.SetActive(true);
-        StartCoroutine(FinishTrigger());
+        SceneManager.LoadScene("EndScreen");
     }
     
 
-        IEnumerator FinishTrigger()
-        {
-            yield return new WaitForSeconds(endScreenTime);
-            SceneManager.LoadScene("MainMenu");
-        }
 }

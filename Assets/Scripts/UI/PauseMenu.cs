@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -12,7 +13,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private GameObject resumeButton;
     [SerializeField] private GameObject backButton;
-    
+    [SerializeField] private GameObject continueButton;
+
     private EventSystem _eventSystem;
     
     [SerializeField] private GameObject pauseUI;
@@ -84,6 +86,11 @@ public class PauseMenu : MonoBehaviour
         _eventSystem.SetSelectedGameObject(resumeButton);
     }
 
+    public void SetContinueButton()
+    {
+        _eventSystem.SetSelectedGameObject(continueButton);
+    }
+
     public void StartGame()
     {
         Time.timeScale = 1f;
@@ -99,4 +106,6 @@ public class PauseMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    
+    
 }

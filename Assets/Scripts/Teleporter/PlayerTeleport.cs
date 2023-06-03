@@ -14,6 +14,7 @@ public class PlayerTeleport : MonoBehaviour
      private PlayerInput _playerInput;
      private PlayerController pc;
      private bool canTrigger = false;
+     [SerializeField] private Animator _animator;
 
      private void Awake()
      {
@@ -65,8 +66,16 @@ public class PlayerTeleport : MonoBehaviour
      {
           if (context.performed && currentTeleporter != null && canTrigger == true)
           {
+               _animator.Play("FadeInAndOut");
+               StartCoroutine(FadePlay(0.5f));
                canTrigger = false;
-               transform.position = currentTeleporter.GetComponent<TeleportDestination>().GetDestination().position;
+               
           }
+     }
+
+     IEnumerator FadePlay(float duration)
+     {
+          yield return new WaitForSeconds(duration);
+          transform.position = currentTeleporter.GetComponent<TeleportDestination>().GetDestination().position;
      }
 }
